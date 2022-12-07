@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="/fonts//css?family=Maple Mono SC NF:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xuanplus.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#3399FF","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="线性代数基本知识点总结">
+<meta property="og:url" content="http://xuanplus.github.io/2022/11/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Xuan&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-30T03:59:40.000Z">
+<meta property="article:modified_time" content="2022-12-07T10:02:01.709Z">
+<meta property="article:author" content="Haoxuan Di">
+<meta property="article:tag" content="高等数学">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://xuanplus.github.io/2022/11/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>线性代数基本知识点总结 | Xuan's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Xuan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">just a blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuanplus.github.io/2022/11/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/image/avatar.jpg">
+      <meta itemprop="name" content="Haoxuan Di">
+      <meta itemprop="description" content="better and better">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xuan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线性代数基本知识点总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-30 11:59:40" itemprop="dateCreated datePublished" datetime="2022-11-30T11:59:40+08:00">2022-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-07 18:02:01" itemprop="dateModified" datetime="2022-12-07T18:02:01+08:00">2022-12-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">数学基础</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description"> </div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="线性方程组"><strong>线性方程组</strong></h2>
+<h3 id="三元线性方程组的消元法">三元线性方程组的消元法</h3>
+<h4 id="定义">定义</h4>
+<ul>
+<li>系数矩阵</li>
+<li>增广矩阵</li>
+<li>矩阵的初等变换</li>
+<li>矩阵等价</li>
+</ul>
+<h4 id="性质">性质</h4>
+<ul>
+<li>线性方程组与增广矩阵一一对应</li>
+<li>增广矩阵初等行变换，对应的线性方程组同解</li>
+</ul>
+<h4 id="方法">方法</h4>
+<ul>
+<li>消元法</li>
+</ul>
+<h3 id="线性方程组与矩阵">线性方程组与矩阵</h3>
+<h4 id="定义-1">定义</h4>
+<ul>
+<li>齐次/非齐次线性方程组</li>
+<li>相容/不相容</li>
+<li>阶梯形、行最简形</li>
+<li>主元位置、主元列、主元</li>
+<li>基变量、自由变量、通解</li>
+</ul>
+<h4 id="性质-1">性质</h4>
+<ul>
+<li>解的三种情况：惟一解、无解、无穷多解</li>
+<li>矩阵的阶梯形不惟一，行最简形惟一，主元位置惟一，主元列惟一</li>
+<li>增广矩阵最后一列为主元列 <span
+class="math inline">\(\Leftrightarrow\)</span> 方程组无解</li>
+<li>齐次线性方程组一定相容（有解）</li>
+</ul>
+<h4 id="方法-1">方法</h4>
+<ul>
+<li>初等行变换化行阶梯形、行最简形</li>
+<li>通解的表示（参数向量形式： <span
+class="math inline">\(x=k_1\xi_1+k_2\xi_2+\eta\)</span>）</li>
+</ul>
+<h3 id="矩阵的秩及方程组的解的判别">矩阵的秩及方程组的解的判别</h3>
+<h4 id="定义-2">定义</h4>
+<blockquote>
+<p>秩（阶梯形非零行数、主元列数、主元位置个数、标准形矩阵左上角单位阵的阶数、矩阵列向量组的秩、行向量组的秩、行空间的维数、列空间的维数、非零子式最高阶数）</p>
+</blockquote>
+<h4 id="性质-2">性质</h4>
+<ul>
+<li><span class="math inline">\(R(A)=0 \Leftrightarrow A=0\)</span></li>
+<li><span class="math inline">\(R(A_{m \times n})\leq min \lbrace
+m,n\rbrace\)</span></li>
+<li><span class="math inline">\(R(A)\leq R(A,b)\leq R(A)+1\)</span></li>
+<li>对<span class="math inline">\(Ax=b\)</span>： <span
+class="math display">\[ \left\{
+\begin{aligned}
+  &amp;R(A) \le R(A,b) \Leftrightarrow 无解 \\
+  &amp;R(A)=R(A,b) \Leftrightarrow 有解 \\
+  &amp;R(A) = R(A,b) = n \Leftrightarrow 有惟一解 \\
+  &amp;R(A) = R(A,b) \le n \Leftrightarrow 有无穷多解
+\end{aligned}
+\right.\]</span></li>
+<li>对<span class="math inline">\(Ax=0\)</span>： <span
+class="math display">\[ \left\{
+\begin{aligned}
+  &amp;R(A) =n \Leftrightarrow 只有零解 \\
+  &amp;R(A) \le n \Leftrightarrow 有非零解
+\end{aligned}
+\right.\]</span></li>
+</ul>
+<h4 id="方法-2">方法</h4>
+<ul>
+<li>用判别定理判断解的情况</li>
+<li>讨论带参数的方程组的解的情况</li>
+</ul>
+<p><br/></p>
+<hr />
+<p><br/></p>
+<h2 id="矩阵及其计算"><strong>矩阵及其计算</strong></h2>
+<h3
+id="特殊形状的矩阵矩阵的基本运算">特殊形状的矩阵、矩阵的基本运算</h3>
+<h4 id="定义-3">定义</h4>
+<ul>
+<li>行向量、列向量</li>
+<li>主对角线</li>
+<li>方阵、上（下）三角阵、对角阵、单位阵</li>
+<li>加法、数乘、线性运算、乘法、矩阵方程、向量方程、乘幂、迹、转置</li>
+</ul>
+<h4 id="性质-3">性质</h4>
+<ul>
+<li>乘法性质：<span class="math inline">\(AB \neq BA; AB=AC \nRightarrow
+B=C; AB=0 \nRightarrow A=0/B=0\)</span></li>
+<li>线性方程组与矩阵方程、向量方程的等价形式</li>
+<li><span class="math inline">\(tr(AB)=tr(BA); (ABC)^T=C^T B^T A^T;
+\Lambda^k=diag(\lambda_1^k, \lambda_2^k, ... ,
+\lambda_n^k)\)</span></li>
+</ul>
+<h4 id="方法-3">方法</h4>
+<ul>
+<li>矩阵的基本运算（重点是乘法）</li>
+</ul>
+<h3 id="分块矩阵及其运算">分块矩阵及其运算</h3>
+<h4 id="定义-4">定义</h4>
+<ul>
+<li>分块矩阵</li>
+<li>分块加法、数乘、乘法、转置</li>
+<li>一致分块法</li>
+</ul>
+<h4 id="性质-4">性质</h4>
+<ul>
+<li><span class="math inline">\(A_{m \times n}\)</span>，若<span
+class="math inline">\(A^TA=0\)</span>，则<span
+class="math inline">\(A=0\)</span></li>
+</ul>
+<h4 id="方法-4">方法</h4>
+<ul>
+<li>分块矩阵的运算</li>
+<li>常见的分块技术的运用</li>
+</ul>
+<h3 id="逆矩阵">逆矩阵</h3>
+<h4 id="定义-5">定义</h4>
+<ul>
+<li>逆矩阵、初等矩阵</li>
+<li>矩阵等价</li>
+<li>矩阵的标准形</li>
+</ul>
+<h4 id="性质-5">性质</h4>
+<ul>
+<li>逆矩阵惟一</li>
+<li><span class="math inline">\(E^{-1}=E\)</span></li>
+<li><span class="math inline">\(\Lambda=diag(\lambda_1, ..., \lambda_n),
+\Lambda^{-1}=diag(\lambda_1^{-1}, ..., \lambda_n^{-1})\)</span></li>
+<li><span class="math inline">\(A\)</span>可逆，<span
+class="math inline">\(Ax=b\)</span>有惟一解<span
+class="math inline">\(x=A^{-1}b\)</span></li>
+<li><span class="math inline">\(A_n\)</span>可逆 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(R(A)=n\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(A\stackrel{r}{\sim}E\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(Ax=0\)</span>只有零解</li>
+<li><span class="math inline">\(A_n, B_n\)</span>，若<span
+class="math inline">\(AB=E\)</span>，则<span
+class="math inline">\(A,B\)</span>均可逆，且<span
+class="math inline">\(A^{-1}=B, B^{-1}=A\)</span></li>
+<li><span class="math inline">\((A^{-1})^{-1}=A\)</span>，<span
+class="math inline">\((\lambda A)^{-1} =
+\frac{1}{\lambda}A^{-1}\)</span>，<span
+class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span>，<span
+class="math inline">\((A^T)^{-1}=(A^{-1})^T\)</span></li>
+<li>初等矩阵均可逆，其逆矩阵也为初等矩阵</li>
+<li><span class="math inline">\(A\stackrel{r}{\sim}B\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(PA=B\)</span> <span
+class="math inline">\(P\)</span>为对应的初等矩阵</li>
+<li><span class="math inline">\(A\)</span>可逆 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(A=P_1P_2...P_k\)</span> <span
+class="math inline">\(P_i\)</span>为初等矩阵</li>
+<li><span class="math inline">\(A\stackrel{r}{\sim}B \Leftrightarrow
+PA=B\)</span> <span class="math inline">\(P\)</span>为可逆阵</li>
+<li><span class="math inline">\(A\stackrel{c}{\sim}B \Leftrightarrow
+AQ=B\)</span> <span class="math inline">\(Q\)</span>为可逆阵</li>
+<li><span class="math inline">\(A\sim B\Leftrightarrow
+PAQ=B\)</span>，<span class="math inline">\(P,Q\)</span>为可逆阵</li>
+<li><span class="math inline">\(A\sim B \Leftrightarrow
+R(A)=R(B)\)</span>, <span
+class="math inline">\(R(PAQ)=R(A)\)</span>，<span
+class="math inline">\(P,Q\)</span>可逆</li>
+<li><span class="math inline">\(R(A^T)=R(A)\)</span></li>
+<li><span class="math inline">\(A\)</span>列满秩，且<span
+class="math inline">\(AB=C\)</span>，则<span
+class="math inline">\(R(B)=R(C)\)</span></li>
+</ul>
+<h4 id="方法-5">方法</h4>
+<ul>
+<li>利用定义和性质证明矩阵可逆，并求逆</li>
+<li>分块对角阵、分块上三角阵求逆</li>
+<li>逆矩阵的计算 <span
+class="math inline">\((A,E)\stackrel{r}{\sim}(E,A^{-1})\)</span></li>
+<li><span class="math inline">\(A\)</span>可逆时，求解矩阵方程 <span
+class="math inline">\(Ax=b\)</span>，<span
+class="math inline">\((A,b)\stackrel{r}{\sim}(E,A^{-1}b)\)</span></li>
+</ul>
+<h3 id="方阵的行列式">方阵的行列式</h3>
+<h4 id="定义-6">定义</h4>
+<ul>
+<li>余子式、代数余子式</li>
+<li>行列式</li>
+<li>伴随矩阵<span class="math inline">\(A^*\)</span></li>
+</ul>
+<h4 id="性质-6">性质</h4>
+<ul>
+<li>二、三阶行列式的对角线法则、特殊行列式的计算</li>
+<li>（展开定理）： <span class="math display">\[
+a_{i1}c_{j1}+a_{i2}c_{j2}+...+a_{in}c_{jn}=
+\left\{
+\begin{aligned}
+&amp;|A| &amp;i=j\\
+&amp;0 &amp;i\neq j
+\end{aligned}
+\right.
+\]</span></li>
+<li><span
+class="math inline">\(A\stackrel{r}{\sim}B，则|B|=\alpha|A|，\alpha=1,-1,k(k\neq
+0)\)</span></li>
+<li><span class="math inline">\(A\)</span>可逆$ |A|$</li>
+<li><span class="math inline">\(|A^T|=|A|\)</span></li>
+<li><span class="math inline">\(|AB|=|A||B|\)</span></li>
+<li><span class="math inline">\(|\lambda A|=\lambda^n|A|\)</span></li>
+<li><span class="math inline">\(AA^*=A^*A=|A|E\)</span></li>
+<li>当<span class="math inline">\(A\)</span>可逆时，<span
+class="math inline">\(A^{-1}=\frac{1}{|A|}A^*\)</span>，<span
+class="math inline">\(A^*=|A|A^{-1}\)</span>，<span
+class="math inline">\(|A^*|=|A|^{n-1}\)</span>，<span
+class="math inline">\((A^*)^{-1}=\frac{1}{|A|}A\)</span>，<span
+class="math inline">\((A^*)^*=|A|^{n-2}A\)</span></li>
+<li>克拉默法则：当<span class="math inline">\(|A_n|\neq
+0\)</span>时，<span class="math inline">\(Ax=b\)</span>有惟一解，<span
+class="math inline">\(x_k=\frac{|A_k(b)|}{|A|}，k=1,2,...,n\)</span></li>
+</ul>
+<h4 id="方法-6">方法</h4>
+<ul>
+<li>行列式的计算</li>
+<li>特殊行列式：行（列）和相等、箭形、范德蒙、分块</li>
+<li>伴随矩阵<span class="math inline">\(A^*\)</span>计算</li>
+<li>对<span class="math inline">\(A_n\)</span>，讨论<span
+class="math inline">\(Ax=b\)</span>解的情况时，可用行列式（克拉默法则）判断是否有惟一解</li>
+</ul>
+<h2 id="向量空间">向量空间</h2>
+<h3 id="基本概念">基本概念</h3>
+<h4 id="定义-7">定义</h4>
+<ul>
+<li>n维数组向量、向量组</li>
+<li>线性组合、线性表示</li>
+<li>向量组等价</li>
+<li>向量空间<span class="math inline">\(R^n，P_n，R^{m\times
+n}\)</span></li>
+<li>子空间、生成空间</li>
+<li>生成集、生成元</li>
+</ul>
+<h4 id="性质-7">性质</h4>
+<ul>
+<li>有限个向量的向量组与矩阵对应关系</li>
+<li><span class="math inline">\(b\)</span>可由向量组<span
+class="math inline">\(A: \alpha_1,...,\alpha_n\)</span>线性表示 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(Ax=b\)</span>有解 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(R(A)=R(A,b)\)</span></li>
+<li>向量组<span class="math inline">\(B\)</span>可由向量组<span
+class="math inline">\(A\)</span>线性表示 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(Ax=B\)</span>有解 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(R(A)=R(A,B)\)</span></li>
+<li>向量组<span class="math inline">\(A\)</span>与向量组<span
+class="math inline">\(B\)</span>等价 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(R(A)=R(B)=R(A,B)\)</span></li>
+<li><span class="math inline">\(AB=C\)</span>，则<span
+class="math inline">\(C\)</span>的列可由<span
+class="math inline">\(A\)</span>的列线性表示；<span
+class="math inline">\(C\)</span>的行可由<span
+class="math inline">\(B\)</span>的行线性表示</li>
+<li>生成空间是子空间</li>
+</ul>
+<h4 id="方法-7">方法</h4>
+<ul>
+<li>判断<span class="math inline">\(b\)</span>是否可由向量组<span
+class="math inline">\(A: \alpha_1,...,\alpha_n\)</span>线性表示</li>
+<li>判断向量组B是否可由向量组A线性表示，向量组A与向量组B是否等价</li>
+<li>证明子空间（1.定义，2.表示成生成空间的形式）</li>
+</ul>
+<h3 id="线性相关线性表示">线性相关、线性表示</h3>
+<h4 id="定义-8">定义</h4>
+<ul>
+<li>线性相关、线性无关</li>
+<li>向量组的极大无关组</li>
+<li>向量组的秩、行秩、列秩</li>
+<li>秩的等价定义（非零子式最高阶数）</li>
+</ul>
+<h4 id="性质-8">性质</h4>
+<ul>
+<li>单个向量等于零则相关，不等于零则无关</li>
+<li>两个向量满足数乘关系（分量成比例、共线）则相关，否则无关</li>
+<li>向量组线性相关 <span class="math inline">\(\Leftrightarrow\)</span>
+至少有一个向量组可由其他向量表示</li>
+<li>相关组增加向量仍相关，无关组减少向量仍无关</li>
+<li>无关组增加向量线性相关，则增加的向量可由无关组惟一线性表示</li>
+<li><span class="math inline">\(R^n\)</span>中，组<span
+class="math inline">\(A: \alpha_1,...,\alpha_m\)</span>线性相关 <span
+class="math inline">\(\Leftrightarrow Ax=0\)</span>有非零解 <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(R(A)&lt; m\)</span>；线性无关 <span
+class="math inline">\(\Leftrightarrow Ax=0\)</span>只有零解 <span
+class="math inline">\(\Leftrightarrow R(A)=m\)</span></li>
+<li><span class="math inline">\(n+1\)</span>个<span
+class="math inline">\(n\)</span>维向量一定线性无关</li>
+<li>向量组的极大无关组可能不惟一，但极大无关组包含向量组的个数惟一</li>
+<li>向量组<span class="math inline">\(B\)</span>可由向量组<span
+class="math inline">\(A\)</span>线性表示，则<span
+class="math inline">\(R_B\leq R_A\)</span></li>
+<li>等价向量组的秩相同</li>
+<li>初等变换不改变行秩、列秩</li>
+<li>行秩=列秩=矩阵的秩</li>
+<li>秩的性质：
+<ul>
+<li><span class="math inline">\(A_{m \times n}\)</span>，<span
+class="math inline">\(\exists s\)</span>阶子式<span
+class="math inline">\(\neq0\)</span>，<span
+class="math inline">\(R(A)\geq s\)</span>，<span
+class="math inline">\(\forall t\)</span>阶子式<span
+class="math inline">\(=0\)</span>，<span class="math inline">\(R(A)\le
+t\)</span></li>
+<li><span class="math inline">\(R(A)\leq \min\{m,n\}\)</span></li>
+<li><span class="math inline">\(R(A)=R(A^T)\)</span></li>
+<li><span class="math inline">\(\max\{R(A),R(B)\}\leq R(A,B)\leq
+R(A)+R(B)\)</span></li>
+<li><span class="math inline">\(R(A+B)\leq R(A)+R(B)\)</span></li>
+<li><span class="math inline">\(R(AB)\leq
+\min\{R(A),R(B)\}\)</span></li>
+<li><span class="math inline">\(AB=0\)</span>，则<span
+class="math inline">\(R(A)+R(B)\leq n\)</span> <span
+class="math display">\[R(A^*)=
+\left\{
+\begin{aligned}
+&amp;n  &amp;R(A)=n\\
+&amp;1  &amp;R(A)=n-1\\
+&amp;0  &amp;R(A)\le n-1
+\end{aligned}
+\right.
+\]</span></li>
+</ul></li>
+</ul>
+<h4 id="方法-8">方法</h4>
+<ul>
+<li>利用定义或性质，证明向量组的线性相关性</li>
+<li>矩阵<span
+class="math inline">\(A\)</span>的列向量组的极大无关组：<span
+class="math inline">\(A\)</span>的主元列（由行最简形可写出线性表示关系）</li>
+<li>利用秩的性质分析问题</li>
+</ul>
+<h3
+id="向量空间的基维数坐标系过渡矩阵">向量空间的基、维数、坐标系、过渡矩阵</h3>
+<h4 id="定义-9">定义</h4>
+<ul>
+<li>基、维数、坐标</li>
+<li>坐标映射</li>
+<li>线性同构</li>
+<li>坐标变换公式：<span
+class="math inline">\([\alpha]_B=P[\alpha]_A\)</span></li>
+<li>过渡矩阵：<span class="math inline">\(A=BP\)</span></li>
+</ul>
+<h4 id="性质-9">性质</h4>
+<ul>
+<li>基不唯一，基中向量个数唯一</li>
+<li>基<span
+class="math inline">\(\Leftrightarrow\)</span>向量组的极大无关组</li>
+<li>维数<span
+class="math inline">\(\Leftrightarrow\)</span>向量组的秩</li>
+<li>若<span class="math inline">\(\dim V=n\)</span>：
+<ul>
+<li>任意n个线性无关的向量构成一组基</li>
+<li>任意n个可生成V的向量构成一组基</li>
+<li>少于n个不能生成V，多于n个必相关</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        
+    <div style="text-align:center;color: #ccc;font-size:16px;">
+        ------ 本文结束，感谢您的阅读 ------
+    </div> 
+
+      
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"># 高等数学</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"># 线性代数</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/27/%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-Step-2-%E2%80%94%E2%80%94-Bootloader%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="自制操作系统 Step 2 —— Bootloader（一）">
+      <i class="fa fa-chevron-left"></i> 自制操作系统 Step 2 —— Bootloader（一）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/05/NexT%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE/" rel="next" title="NexT主题安装及其配置">
+      NexT主题安装及其配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">线性方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%B6%88%E5%85%83%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">三元线性方程组的消元法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84%E4%B8%8E%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.</span> <span class="nav-text">线性方程组与矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E7%A7%A9%E5%8F%8A%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E8%A7%A3%E7%9A%84%E5%88%A4%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵的秩及方程组的解的判别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%8F%8A%E5%85%B6%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">矩阵及其计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%BD%A2%E7%8A%B6%E7%9A%84%E7%9F%A9%E9%98%B5%E7%9F%A9%E9%98%B5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="nav-number">2.1.</span> <span class="nav-text">特殊形状的矩阵、矩阵的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="nav-number">2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-3"><span class="nav-number">2.1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-3"><span class="nav-number">2.1.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E7%9F%A9%E9%98%B5%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97"><span class="nav-number">2.2.</span> <span class="nav-text">分块矩阵及其运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="nav-number">2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-4"><span class="nav-number">2.2.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-4"><span class="nav-number">2.2.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">2.3.</span> <span class="nav-text">逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-5"><span class="nav-number">2.3.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-5"><span class="nav-number">2.3.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E9%98%B5%E7%9A%84%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">方阵的行列式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-6"><span class="nav-number">2.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-6"><span class="nav-number">2.4.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-6"><span class="nav-number">2.4.3.</span> <span class="nav-text">方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">向量空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-7"><span class="nav-number">3.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-7"><span class="nav-number">3.1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-7"><span class="nav-number">3.1.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.2.</span> <span class="nav-text">线性相关、线性表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-8"><span class="nav-number">3.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-8"><span class="nav-number">3.2.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-8"><span class="nav-number">3.2.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E7%9A%84%E5%9F%BA%E7%BB%B4%E6%95%B0%E5%9D%90%E6%A0%87%E7%B3%BB%E8%BF%87%E6%B8%A1%E7%9F%A9%E9%98%B5"><span class="nav-number">3.3.</span> <span class="nav-text">向量空间的基、维数、坐标系、过渡矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-9"><span class="nav-number">3.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-9"><span class="nav-number">3.3.2.</span> <span class="nav-text">性质</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Haoxuan Di"
+      src="/image/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Haoxuan Di</p>
+  <div class="site-description" itemprop="description">better and better</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xuanplus" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xuanplus" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Haoxuan Di</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'd02e9cc753c62bc563c4',
+      clientSecret: '1630981692bf060c749d0e1d8b48ec002c2ba654',
+      repo        : 'blog-gitalk',
+      owner       : 'xuanplus',
+      admin       : ['xuanplus'],
+      id          : '66b9cc0ee9e9a5c4ce1eafc53b0f31ae',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
